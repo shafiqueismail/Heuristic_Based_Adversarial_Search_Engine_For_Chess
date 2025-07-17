@@ -5,7 +5,13 @@ import time
 import sys
 import traceback
 
-
+from ai.heuristics import (
+    evaluate_board_e0,
+    evaluate_board_e1,
+    evaluate_board_e2,
+    evaluate_board_e3,
+    evaluate_board_e4
+)
 
 class MiniChess:
     def __init__(self):
