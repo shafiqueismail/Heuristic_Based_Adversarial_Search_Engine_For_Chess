@@ -2,7 +2,7 @@
     
     
     
-    def evaluate_board_e0(self, game_state):
+    def evaluate_board_e0(game_state, ai_color):
         e0 = {
             'wp': 1, 'wB': 3, 'wN': 3, 'wQ': 9, 'wK': 999,
             'bp': 1, 'bB': 3, 'bN': 3, 'bQ': 9, 'bK': 999
@@ -22,7 +22,7 @@
         board_eval = white_score - black_score
         return board_eval if self.ai_color == "white" else -board_eval
 
-    def evaluate_board_e1(self, game_state):
+    def evaluate_board_e1(game_state, ai_color):
         """
         Add a small bonus for pieces near the center and penalize isolated kings.
         """
@@ -57,7 +57,7 @@
         return score if self.ai_color == "white" else -score
 
 
-    def evaluate_board_e2(self, game_state):
+    def evaluate_board_e2(game_state, ai_color):
         """
         Evaluate board by counting mobility: how many moves are available to each side.
         """
@@ -83,7 +83,7 @@
         
         return (material_score + mobility_score) if self.ai_color == "white" else -(material_score + mobility_score)
 
-    def evaluate_board_e3(self, game_state):
+    def evaluate_board_e3(game_state, ai_color):
         """
         King safety through threatened squares and quick checks:
         - Give a bonus if the opponent's king squares are threatened.
@@ -125,7 +125,7 @@
         total_score = base_score + king_safety_score
         return total_score if self.ai_color == "white" else -total_score
 
-    def evaluate_board_e4(self, game_state):
+    def evaluate_board_e4(game_state, ai_color):
         """
         Piece-Square Table & Aggression:
         - Distinct tables for white and black pieces so orientation doesn't cause inaccuracies.
