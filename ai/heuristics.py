@@ -1,6 +1,3 @@
-from game.engine import MiniChess
-
-
 def evaluate_board_e0(game_state, ai_color):
     e0 = {
         'wp': 1, 'wB': 3, 'wN': 3, 'wQ': 9, 'wK': 999,
@@ -44,15 +41,14 @@ def evaluate_board_e1(game_state, ai_color):
     return score if ai_color == "white" else -score
 
 
-def evaluate_board_e2(game_state, ai_color):
-    dummy = MiniChess()
+def evaluate_board_e2(game_state, ai_color, engine):
     original_turn = game_state["turn"]
 
     game_state["turn"] = "white"
-    white_moves = dummy.valid_moves(game_state)
+    white_moves = engine.valid_moves(game_state)
 
     game_state["turn"] = "black"
-    black_moves = dummy.valid_moves(game_state)
+    black_moves = engine.valid_moves(game_state)
 
     game_state["turn"] = original_turn
 
@@ -62,14 +58,13 @@ def evaluate_board_e2(game_state, ai_color):
     return (material_score + mobility_score) if ai_color == "white" else -(material_score + mobility_score)
 
 
-def evaluate_board_e3(game_state, ai_color):
-    dummy = MiniChess()
+def evaluate_board_e3(game_state, ai_color, engine):
     base_score = evaluate_board_e0(game_state, ai_color)
 
     original_turn = game_state["turn"]
     opponent_turn = 'white' if original_turn == 'black' else 'black'
     game_state["turn"] = opponent_turn
-    opponent_moves = dummy.valid_moves(game_state)
+    opponent_moves = engine.valid_moves(game_state)
     threatened_squares = {move[1] for move in opponent_moves}
     game_state["turn"] = original_turn
 
@@ -96,9 +91,7 @@ def evaluate_board_e3(game_state, ai_color):
     return total_score if ai_color == "white" else -total_score
 
 
-def evaluate_board_e4(game_state, ai_color):
-    dummy = MiniChess()
-
+def evaluate_board_e4(game_state, ai_color, engine):
     piece_square_table = {
         'bp': [[2, 2, 2, 2, 2], [2.25, 2.3, 2.3, 2.3, 2.3], [3.1, 3.3, 3.3, 3.3, 3.1],
                [3.15, 3.4, 3.4, 3.4, 3.15], [4, 4, 4, 4, 4]],
@@ -108,7 +101,6 @@ def evaluate_board_e4(game_state, ai_color):
                [1.3, 2.6, 2.6, 2.6, 1.3], [1.2, 1.3, 1.3, 1.3, 1.2]],
         'bQ': [[1.5] * 5] * 5,
         'bK': [[0.2] * 5] * 5,
-
         'wp': [[4, 4, 4, 4, 4], [3.15, 3.4, 3.4, 3.4, 3.15], [3.1, 3.3, 3.3, 3.3, 3.1],
                [2.25, 2.3, 2.3, 2.3, 2.3], [2, 2, 2, 2, 2]],
         'wN': [[1.2, 1.3, 1.3, 1.3, 1.2], [1.3, 2.4, 2.4, 2.4, 1.3], [1.3, 2.4, 3.5, 2.4, 1.3],
@@ -123,9 +115,9 @@ def evaluate_board_e4(game_state, ai_color):
 
     original_turn = game_state["turn"]
     game_state["turn"] = "white"
-    white_moves = dummy.valid_moves(game_state)
+    white_moves = engine.valid_moves(game_state)
     game_state["turn"] = "black"
-    black_moves = dummy.valid_moves(game_state)
+    black_moves = engine.valid_moves(game_state)
     game_state["turn"] = original_turn
 
     aggression_score = 0

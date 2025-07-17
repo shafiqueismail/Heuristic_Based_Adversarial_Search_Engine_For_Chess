@@ -1,0 +1,15 @@
+Game Parameters:
+ - Timeout (t): 5
+ - Max Turns (m): 20
+ - Player 1 color: WHITE
+ - Player 1 = AI & Player 2 = AI
+ - Alpha-Beta: False
+ - AI (one) Heuristic: e3
+ - AI (two) Heuristic: e4
+
+Initial Board Configuration:
+bK bQ bB bN .
+. . bp bp .
+. . . . .
+. wp wp . .
+. wN wB wQ wK
