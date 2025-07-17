@@ -686,15 +686,15 @@ class MiniChess:
         # 1) Early-stop if we've reached the limit in depth, the king is gone, or we've hit our time limit
         if depth == 0 or not self.king_exists(game_state, simulation=True) or (time.time() - start_time) >= TIME_LIMIT:
             if chosen_heuristic == 'e1':
-                return self.evaluate_board_e1(game_state), None
+                return evaluate_board_e1(game_state, self.ai_color), None
             elif chosen_heuristic == 'e2':
-                return self.evaluate_board_e2(game_state), None
+                return evaluate_board_e2(game_state, self.ai_color), None
             elif chosen_heuristic == 'e3':
-                return self.evaluate_board_e3(game_state), None
+                return evaluate_board_e3(game_state, self.ai_color), None
             elif chosen_heuristic == 'e4':
-                return self.evaluate_board_e4(game_state), None
+                return evaluate_board_e4(game_state, self.ai_color), None
             else:
-                return self.evaluate_board_e0(game_state), None
+                return evaluate_board_e0(game_state, self.ai_color), None
 
         # Determine the current king's color and the opponent's color
         king_color = 'w' if game_state['turn'] == "white" else 'b'
