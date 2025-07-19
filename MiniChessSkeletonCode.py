@@ -592,6 +592,7 @@ class MiniChess:
 
                 start_time = time.time()
 
+
                 # Determine if the AI is maximizing (if it is playing as white)
                 best_eval, move = self.use_minimax(self.current_game_state, alpha=-math.inf, beta=math.inf, maximizing_player=(self.ai_color == 'white'), start_time=start_time)
 

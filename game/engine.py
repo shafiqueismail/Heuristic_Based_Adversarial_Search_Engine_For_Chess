@@ -516,7 +516,7 @@ class MiniChess:
                     print("Invalid heuristic. Exiting game.")
                     exit(1)
 
-        print("Enter 'exit' to quit the game.")
+        print("Enter 'exit' to quit the game session.")
 
         # Determine the flag for alpha-beta
         if mode in ['2', '3']:
