@@ -5,6 +5,7 @@ def evaluate_board_e0(game_state, ai_color):
     }
 
     white_score = 0
+    
     black_score = 0
 
     for row in game_state["board"]:

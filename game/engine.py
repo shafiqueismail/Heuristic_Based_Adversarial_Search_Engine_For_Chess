@@ -519,7 +519,10 @@ class MiniChess:
         print("Enter 'exit' to quit the game.")
 
         # Determine the flag for alpha-beta
-        alpha_beta_on = (algorithm == 'a')
+        if mode in ['2', '3']:
+            alpha_beta_on = (algorithm == 'a')
+        else:  
+            alpha_beta_on = False
         # Build the trace file name
         self.trace_file_name = f"gameTrace-{str(alpha_beta_on).lower()}-{TIME_LIMIT}-{max_turns}.txt"
 
@@ -686,13 +689,13 @@ class MiniChess:
         # 1) Early-stop if we've reached the limit in depth, the king is gone, or we've hit our time limit
         if depth == 0 or not self.king_exists(game_state, simulation=True) or (time.time() - start_time) >= TIME_LIMIT:
             if chosen_heuristic == 'e1':
-                return evaluate_board_e1(game_state, self), None
+                return evaluate_board_e1(game_state, self.ai_color, self), None
             elif chosen_heuristic == 'e2':
-                return evaluate_board_e2(game_state, self), None
+                return evaluate_board_e2(game_state, self.ai_color, self), None
             elif chosen_heuristic == 'e3':
-                return evaluate_board_e3(game_state, self), None
+                return evaluate_board_e3(game_state, self.ai_color, self), None
             elif chosen_heuristic == 'e4':
-                return evaluate_board_e4(game_state, self), None
+                return evaluate_board_e4(game_state, self.ai_color, self), None
             else:
                 return evaluate_board_e0(game_state, self), None
 
