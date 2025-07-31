@@ -11,7 +11,7 @@ A **MiniChess AI engine** implementing classic adversarial search techniques suc
 
 ---
 
-## 🧠 Heuristics Included
+## Heuristics Included
 
 | Heuristic | Description |
 |----------|-------------|
@@ -23,7 +23,7 @@ A **MiniChess AI engine** implementing classic adversarial search techniques suc
 
 ---
 
-## 🕹️ Features
+## Features
 
 - 5×5 **MiniChess** board with simplified rules
 - Turn-based engine with built-in **move legality checks**
@@ -38,13 +38,5 @@ A **MiniChess AI engine** implementing classic adversarial search techniques suc
 
 ---
 
-## 📁 Project Structure
-
-```bash
-.
-├── ai/                       # AI heuristics & search logic
-├── game/                     # Game rules and mechanics
-├── MiniChessSkeletonCode.py # Main entry point to run the game
-├── main.py                  # Heuristic setup and experiment driver
-├── gameTrace-*.txt          # Example trace logs of games
-└── README.md                # You're here!
+## Project Structure
+- Run the file "MiniChessSkeletonCode.py" to see the game-play.
